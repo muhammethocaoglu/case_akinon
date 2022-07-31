@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - /var/lib/postgresql/data
+
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/sh -c "/application_start.sh"
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:postgres@localhost:5432/postgres
+      - FIXER_IO_BASE_URL=https://api.apilayer.com/fixer
+      - FIXER_IO_LATEST_ENDPOINT_CONTEXT_PATH=/latest
+      - FIXER_IO_API_KEY=aPGkmYHySONN9ylhWLXVPeKIKd1O8ZI1
+    volumes:
+      - .:/app
+    depends_on:
+      - db

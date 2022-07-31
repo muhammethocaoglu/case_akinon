@@ -1,0 +1,16 @@
+requests==2.26.0
+fastapi==0.68.1
+freezegun==1.1.0
+pydantic==1.9.0
+psycopg2-binary==2.9.1
+pylint==2.10.2
+python-dotenv==0.12.0
+sqlalchemy==1.4.23
+starlette==0.14.2
+uvicorn==0.13.4
+alembic==1.7.6
+
+# test requirements
+pytest==6.2.5
+pytest-env==0.6.2
+pytest-cov==2.12.1
